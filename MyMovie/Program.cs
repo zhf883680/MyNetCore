@@ -17,8 +17,13 @@ namespace MyMovie
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)=>
+            //默认设置   Kestrel Web Server  
+            //IIS集成  useIIS() useIISIntegration
+            //Log
+            //IConfiguration
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
+            
     }
 }

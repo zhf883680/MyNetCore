@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +31,9 @@ namespace MyMovie
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        //处理http请求
+
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,IConfiguration configuration)
         {
             if (env.IsDevelopment())
             {
@@ -48,6 +46,13 @@ namespace MyMovie
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.Run(async (context) =>
+            {
+                //系统环境变量优先级高   appsettings.Development 开发模式   appsettings   系统>开发>app
+                var losgLevel = configuration["Logging:LogLevel:Default"];
+                await context.Response.WriteAsync("hello world");
+            });
+
 
             app.UseMvc(routes =>
             {
