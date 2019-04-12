@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MyMovie.Models;
+using MyMovie.Services;
 
 namespace MyMovie
 {
@@ -30,7 +32,7 @@ namespace MyMovie
             //services.AddTransient<IWelcomeServices, WelcomeServices>();//注册服务  每次请求都会生成此实例
             //services.AddScoped<IWelcomeServices, WelcomeServices>();//注册服务  每次http请求
 
-
+            services.AddScoped<IRepository<Student>, InMemoryRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -75,29 +77,30 @@ namespace MyMovie
             //});
 
             //自定义中间件
-            app.Use(next =>
-            {
-                logger.LogInformation("app use...");
-                return async httpContext =>
-                {
-                    logger.LogInformation("async httpcontext...");
-                    if (httpContext.Request.Path.StartsWithSegments("/first"))
-                    {
-                        logger.LogInformation("first...");
-                        await httpContext.Response.WriteAsync("first!!");
-                    }
-                    else
-                    {
-                        logger.LogInformation("next...");
-                        await next(httpContext);
-                    }
-                };
+            //app.Use(next =>
+            //{
+            //    logger.LogInformation("app use...");
+            //    return async httpContext =>
+            //    {
+            //        logger.LogInformation("async httpcontext...");
+            //        if (httpContext.Request.Path.StartsWithSegments("/first"))
+            //        {
+            //            logger.LogInformation("first...");
+            //            await httpContext.Response.WriteAsync("first!!");
+            //        }
+            //        else
+            //        {
+            //            logger.LogInformation("next...");
+            //            await next(httpContext);
+            //        }
+            //    };
 
-            });
+            //});
 
 
             app.UseMvc(routes =>
             {
+                //约定路由  可不写  直接在控制器上写  如 homecontroller
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
