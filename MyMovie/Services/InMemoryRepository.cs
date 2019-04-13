@@ -14,17 +14,17 @@ namespace MyMovie.Services
             {
                 new Student()
                 {
-                    age = 1,
+                    Age = 1,
                     Name = "zhf"
                 },
                 new Student()
                 {
-                    age = 1,
+                    Age = 1,
                     Name = "zhf"
                 },
                 new Student()
                 {
-                    age = 1,
+                    Age = 1,
                     Name = "zhf"
                 }
             };

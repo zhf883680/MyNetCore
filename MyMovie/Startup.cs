@@ -43,7 +43,7 @@ namespace MyMovie
             IApplicationBuilder app,
             IHostingEnvironment env,
             IConfiguration configuration,
-            IWelcomeServices welcomeMyApp,//自定义的
+            //IWelcomeServices welcomeMyApp,//自定义的
             ILogger<Startup> logger//日志
 
             )//自定义服务

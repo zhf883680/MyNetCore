@@ -1,4 +1,6 @@
-﻿@{
+﻿@using MyMovie.Models
+@model Student
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +8,10 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+<form method="post">
+    <input asp-for="Name" />
+    <input asp-for="Age" />
+    <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()">  
+    </select>
+
+</form>

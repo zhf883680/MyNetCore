@@ -17,7 +17,7 @@ namespace MyMovie.Controllers
     {
         //构造函数  自建的服务
         private readonly IRepository<Student> _repository;
-        public  HomeController(IRepository<Student> repository)//选额repository 后 ctrl+. 可自动生成部分代码
+        public  HomeController(IRepository<Student> repository)//选择repository 
         {
             _repository = repository;
         }
@@ -46,6 +46,11 @@ namespace MyMovie.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Create()
+        {
+            return View();
         }
     }
 }
