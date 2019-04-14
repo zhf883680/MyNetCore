@@ -52,5 +52,16 @@ namespace MyMovie.Controllers
         {
             return View();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken] //防止跨域请求
+        public IActionResult Create(Models.Student student)
+        {
+            if (ModelState.IsValid)//验证数据
+            {
+                return Json(new {success = "success"});
+            }
+            ModelState.AddModelError(string.Empty,"Model error");
+            return View();
+        }
     }
 }

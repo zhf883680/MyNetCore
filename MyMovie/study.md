@@ -18,3 +18,6 @@ options.UseMySql(Configuration["LmdsConnection"]);
 ```
 nameof(error) 页面跳转或者其他 方便重构
 ```
+
+## 疑问
+ModelOnly 实际展现 目测使用很少?

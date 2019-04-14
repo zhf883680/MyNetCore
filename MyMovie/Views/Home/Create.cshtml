@@ -1,0 +1,21 @@
+﻿@using MyMovie.Models
+@model Student
+@{
+    ViewData["Title"] = "Create";
+}
+
+<form method="post">
+    <div>
+        @*label*@
+        <label asp-for=Name></label>
+        @*输入框*@
+        <input asp-for="Name" />
+        @*错误信息提示*@
+        <span asp-validation-for="Name"></span>
+    </div>
+    <input asp-for="Age" />
+    @*下拉列表*@
+    <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()"></select>
+    @*错误汇总 ModelOnly:model级别错误   *@
+    <div asp-validation-summary="All"></div>
+</form>
