@@ -18,6 +18,12 @@ options.UseMySql(Configuration["LmdsConnection"]);
 ```
 nameof(error) 页面跳转或者其他 方便重构
 ```
+ctor 快速创建构造函数
 
+code First 创建 更新数据库
+```
+Add-Migration Xxxxx
+Update-Database
+```
 ## 疑问
 ModelOnly 实际展现 目测使用很少?

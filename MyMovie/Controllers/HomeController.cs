@@ -33,7 +33,7 @@ namespace MyMovie.Controllers
             //this.Request;
             //this.ControllerContext
             //this.File();//返回文件
-            //this._repository.GetAll()();//注册服务后引用函数
+            //  this._repository.GetAll(); //注册服务后引用函数
             return View();
         }
 

@@ -8,5 +8,9 @@ namespace MyMovie.Services
     public interface IRepository<T> where  T:class
     {
         IEnumerable<T> GetAll();
+
+        int Add(T obj);
+
+        T Get(int id);
     }
 }

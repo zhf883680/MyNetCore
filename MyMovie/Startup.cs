@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MyMovie.Data;
 using MyMovie.Models;
 using MyMovie.Services;
 
@@ -12,6 +14,10 @@ namespace MyMovie
 {
     public class Startup
     {
+        /// <summary>
+        /// 提前配置好 方便直接使用
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -32,7 +38,11 @@ namespace MyMovie
             //services.AddTransient<IWelcomeServices, WelcomeServices>();//注册服务  每次请求都会生成此实例
             //services.AddScoped<IWelcomeServices, WelcomeServices>();//注册服务  每次http请求
 
-            services.AddScoped<IRepository<Student>, InMemoryRepository>();
+            //services.AddScoped<IRepository<Student>, InMemoryRepository>();
+            //或者     Configuration.GetConnectionString("DefaultConnection")
+
+            services.AddDbContext<DataContext>(options => { options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]); });
+            services.AddScoped<IRepository<Student>, EFCoreRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

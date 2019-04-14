@@ -8,6 +8,11 @@ namespace MyMovie.Models
 {
     public class Student
     {
+        [Key]
+        [Required]
+        public int No { get; set; }
+
+
         [Display(Name="姓名")]  //for label  
        
         [Required(ErrorMessage = "此项不能为空")]

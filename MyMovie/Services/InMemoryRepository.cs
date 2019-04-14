@@ -29,5 +29,15 @@ namespace MyMovie.Services
                 }
             };
         }
+
+        public int Add(Student a)
+        {
+            return 1;
+        }
+
+        public Student Get(int id)
+        {
+            return new Student();
+        }
     }
 }
