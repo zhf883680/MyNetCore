@@ -1,5 +1,4 @@
-﻿@using MyMovie.Models
-@model Student
+﻿@model MyMovie.ViewModels.ShowStudents
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -8,3 +7,20 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>*@
+
+@*@Html.PartialAsync("_StudentTable", Model.Students)*@
+<partial name="_StudentTable" for="Students"/>
+
+@await Component.InvokeAsync("Welcome")
+
+@addTagHelper *,MyMovie
+<vc:welcome></vc:welcome>
+<ul>
+    @*@foreach (var item in Model.Students)
+    {
+        <li>@item.Name  @item.Age <a asp-action="Detail" asp-route-id="@item.No">详细</a> </li>
+    }*@
+        <div>
+            <a asp-action="Create">增加</a>
+        </div>
+</ul>

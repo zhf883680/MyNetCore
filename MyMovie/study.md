@@ -33,6 +33,9 @@ _Layout 模板 可直接新建 搜索layout
 ```
 _ViewStart.cshtml:  Layout = "~/Views/Shared/_Layout.cshtml"; 开始渲染时候执行的代码  
 _ViewImports:  用于写通用的  例如 @using Models  
+partial view 复用view代码
+view components 复用 独立组件 独立的逻辑/数据 相当于迷你mvc 不依赖父级view数据 需建立 viewComponents components welcome 类似控制器
+
 
 ## 疑问
 ModelOnly 实际展现 目测使用很少?

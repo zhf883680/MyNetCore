@@ -23,18 +23,18 @@ namespace MyMovie.Models
         public int Age { get; set; }
         public Gender Gender { get; set; }
 
-        [DataType(DataType.DateTime,ErrorMessage = "请选择时间")]
+        //[DataType(DataType.DateTime,ErrorMessage = "请选择时间")]
         public DateTime RegTime { get; set; }
 
 
-        [Required(ErrorMessage = "此项不能为空")]
-        [DataType(DataType.Password)]//密码 type=password
+        //[Required(ErrorMessage = "此项不能为空")]
+       // [DataType(DataType.Password)]//密码 type=password
         public string Password { get; set; }
 
 
-        [Required(ErrorMessage = "此项不能为空")]
-        [DataType(DataType.Password)]//密码 type=password
-        [Compare("Password", ErrorMessage = "2次密码不一致")]
+        //[Required(ErrorMessage = "此项不能为空")]
+       // [DataType(DataType.Password)]//密码 type=password
+      //  [Compare("Password", ErrorMessage = "2次密码不一致")]
         public string ConfirmPassword { get; set; }
     }
 }

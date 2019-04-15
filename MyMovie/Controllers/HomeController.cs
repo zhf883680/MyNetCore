@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MyMovie.Models;
 using MyMovie.Services;
+using MyMovie.ViewModels;
 
 namespace MyMovie.Controllers
 {
@@ -34,7 +35,11 @@ namespace MyMovie.Controllers
             //this.ControllerContext
             //this.File();//返回文件
             //  this._repository.GetAll(); //注册服务后引用函数
-            return View();
+            var students = new ShowStudents()
+            {
+                Students = this._repository.GetAll().ToList()
+            };
+            return View(students);
         }
 
         public IActionResult Privacy()
@@ -58,10 +63,24 @@ namespace MyMovie.Controllers
         {
             if (ModelState.IsValid)//验证数据
             {
-                return Json(new {success = "success"});
+                _repository.Add(new Student()
+                {
+                    Age = student.Age,
+                    Gender = student.Gender,
+                    Name = student.Name,
+                    RegTime = DateTime.Now,
+                    Password="1234",
+                    ConfirmPassword = "1234"
+                });
+                return RedirectToAction(nameof(Index));
             }
-            ModelState.AddModelError(string.Empty,"Model error");
+            //ModelState.AddModelError(string.Empty,"Model error"); model错误
             return View();
+        }
+
+        public IActionResult Detail(int id)
+        {
+            return View(_repository.Get(id));
         }
     }
 }

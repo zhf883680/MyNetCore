@@ -1,0 +1,18 @@
+﻿
+@model List<Student>
+@{
+    ViewData["Title"] = "_StudentTable";
+}
+
+<table>
+    <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>操作</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr><td>@item.Name</td><td>@item.Age</td> <td><a asp-action="Detail" asp-route-id="@item.No">详细</a> </td>  </tr>
+    }
+</table>
+
