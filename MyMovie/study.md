@@ -25,5 +25,14 @@ code First 创建 更新数据库
 Add-Migration Xxxxx
 Update-Database
 ```
+_Layout 模板 可直接新建 搜索layout  
+~ 网站根目录 ?绝对路径?  
+可有可无项目
+```
+ @RenderSection("scripts", required: false)
+```
+_ViewStart.cshtml:  Layout = "~/Views/Shared/_Layout.cshtml"; 开始渲染时候执行的代码  
+_ViewImports:  用于写通用的  例如 @using Models  
+
 ## 疑问
 ModelOnly 实际展现 目测使用很少?
