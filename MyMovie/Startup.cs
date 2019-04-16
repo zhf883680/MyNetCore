@@ -1,7 +1,10 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -46,6 +49,32 @@ namespace MyMovie
             services.AddDbContext<DataContext>(options => { options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]); });
             services.AddScoped<IRepository<Student>, EFCoreRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            //注册登陆模块服务
+            services.AddDbContext<IdentityDbContext>(options=> options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]
+                    ,b => b.MigrationsAssembly("MyMovie")));//根据 Add-Migration InitialIdentity -Context IdentityDbContext 提示输入 更新时候需要指明数据库 update-database -Context IdentityDbContext
+            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<IdentityDbContext>();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings.
+                options.Password.RequireDigit = false;//数字
+                options.Password.RequireLowercase = false;//小写
+                options.Password.RequireNonAlphanumeric = false;//字母数字
+                options.Password.RequireUppercase = false;//大写
+                options.Password.RequiredLength = 6;//长度
+                options.Password.RequiredUniqueChars = 0;//特殊字符
+
+                // Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings.
+                options.User.AllowedUserNameCharacters =
+                    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                options.User.RequireUniqueEmail = false;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -113,7 +142,7 @@ namespace MyMovie
 
             //});
 
-
+            app.UseAuthentication();//使用登陆验证
             app.UseMvc(routes =>
             {
                 //约定路由  可不写  直接在控制器上写  如 homecontroller

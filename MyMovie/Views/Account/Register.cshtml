@@ -1,0 +1,20 @@
+﻿@model MyMovie.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+<form method="post" asp-action="Register" asp-controller="Account">
+    <div>
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" />
+        <span asp-validation-for="UserName"></span>
+    </div>
+    <div>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+    <div><input type="submit" value="注册" /></div>
+    <div asp-validation-summary="All"></div>
+
+</form>
+

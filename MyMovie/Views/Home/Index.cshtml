@@ -7,23 +7,24 @@
 
 </environment>
 @*<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>*@
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>*@
+
 
 @*@Html.PartialAsync("_StudentTable", Model.Students)*@
-<partial name="_StudentTable" for="Students"/>
 
+@*欢迎页*@
 @await Component.InvokeAsync("Welcome")
-
+<partial name="_StudentTable" for="Students" />@*模板数据*@
 @addTagHelper *,MyMovie
 <vc:welcome></vc:welcome>
 <ul>
     @*@foreach (var item in Model.Students)
-    {
-        <li>@item.Name  @item.Age <a asp-action="Detail" asp-route-id="@item.No">详细</a> </li>
-    }*@
-        <div>
-            <a asp-action="Create">增加</a>
-        </div>
+        {
+            <li>@item.Name  @item.Age <a asp-action="Detail" asp-route-id="@item.No">详细</a> </li>
+        }*@
+    <div>
+        <a asp-action="Create">增加</a>
+    </div>
 </ul>

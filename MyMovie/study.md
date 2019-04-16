@@ -40,8 +40,8 @@ view components 复用 独立组件 独立的逻辑/数据 相当于迷你mvc �
 ```
 <environment include="Development"></environment>开发环境引用 
 <environment exclude="Development"></environment>非开发环境引用 
-    <script src="~/node_modules/vue/dist/vue.min.js" asp-fallback-src="加载失败 本地地址" asp-fallback-test="Vue"></script> src cdn包
-	css类似 href
+<script src="~/node_modules/vue/dist/vue.min.js" asp-fallback-src="加载失败 本地地址" asp-fallback-test="Vue"></script> src cdn包
+css类似 href
 ```
 ## 疑问
 ModelOnly 实际展现 目测使用很少?
