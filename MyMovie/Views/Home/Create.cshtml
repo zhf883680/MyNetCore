@@ -27,7 +27,7 @@
         @*下拉列表*@
         <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()"></select>
         @*错误信息提示*@
-        <span asp-validation-for="Age"></span>
+        <span asp-validation-for="Gender"></span>
     </div>
 
     <button type="submit" name="save">增加</button>
