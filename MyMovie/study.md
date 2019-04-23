@@ -43,5 +43,52 @@ view components 复用 独立组件 独立的逻辑/数据 相当于迷你mvc �
 <script src="~/node_modules/vue/dist/vue.min.js" asp-fallback-src="加载失败 本地地址" asp-fallback-test="Vue"></script> src cdn包
 css类似 href
 ```
+## 增加继承identity类
+需要修改startup,
+修改ApplicationDbContext 继承的 IdentityDbContext
+然后移除 
+```
+Remove-Migration -Context ApplicationDbContext
+Add-Migration -Context ApplicationDbContext
+Update-database -Context ApplicationDbContext
+```
+然后把所有使用identity 修改
+
+# XSS
+_htmlEncoder.Encode  
+前台 @Html.Raw()
+# CSRF
+## 伪造请求
+Header 验证
+
+## 传参
+按照顺序  
+Form   
+路由   
+QueryString   
+传递某些参数
+```
+IActionResult(Model user)  
+```
+设置部分不传参
+```
+public IActionResult([Bind('User',"Name")]Model user)
+[BindNerver]
+public string UserName{get;set;}
+```
+设置获取参数的位置
+```
+FromBody
+FromQuery
+FromHeader
+FromRoute
+FromForm
+```
+实例  
+```
+public IActionResult(
+    [FromQuery]Model user,
+    [FromHeader(Name="Accept")] string accept)
+```
 ## 疑问
 ModelOnly 实际展现 目测使用很少?
